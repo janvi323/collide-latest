@@ -1,0 +1,834 @@
+@font-face {
+    font-family: 'Lucida Handwriting';
+    src: url('/path-to-your-font/LucidaHandwriting.ttf') format('truetype');
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+    color: white;
+    background-color: black;
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#loading-logo {
+    font-family: 'Lucida Handwriting', cursive;
+    font-size: 4rem;
+    color: #FFEB3B;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #f5f5d1a4;
+}
+
+nav h1 {
+    font-family: 'Lucida Handwriting', cursive;
+    color: black;
+    font-size: 2rem;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.nav-left, .nav-right {
+    flex-basis: 25%;
+}
+
+.nav-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    margin-left: 1rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: white;
+}
+
+section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#home {
+    position: relative;
+    overflow: hidden;
+}
+
+.slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    object-fit: cover;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+}
+
+h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #FFEB3B;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+button {
+    background-color: #FFEB3B;
+    color: black;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: white;
+}
+
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 2rem;
+    padding: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.prev {
+    left: 1rem;
+}
+
+.next {
+    right: 1rem;
+}
+
+#about {
+    background-color: #fffce6;
+    color: black;
+    padding: 20px;
+}
+
+#about h2 {
+    color: black;
+}
+#about .content {
+    text-align: center;
+    position: relative; /* For positioning child elements */
+    width: 100%;
+}
+
+#about img {
+    width: 100%;
+    max-width: 300px; /* Adjust this value as needed */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 225px; /* Set a max-height proportional to the width */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+    border-radius: 8px; /* Optional: for rounded corners */
+    margin-top: 15px; /* Optional: to add space above the image */
+}
+
+
+
+
+
+
+
+#inclusivity {
+    background-color: #f9f6db;
+    color: black;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.inclusivity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+   
+}
+
+.inclusivity-item {
+    background-color: #f7f5de;
+    color: black;
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inclusivity-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.inclusivity .icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+#inclusivity img {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    width: 200px; /* Adjust width as needed */
+    margin-top: 1rem; /* Optional: adjust space above the image */
+    border-radius: 3rem; /* Makes corners curvy */
+    padding: 1rem; /* Padding inside the image container */
+    background-color: #f7f5de; /* Yellow padding color */
+}
+
+#features {
+    padding: 3rem 0;
+    background-color: #fbf7d1;
+}
+
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.feature {
+    background-color: #FFEB3B;
+    color: black;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.feature h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.feature p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+footer {
+    background-color: black;
+    color: white;
+    padding: 2rem;
+}
+
+footer .content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+footer h3, footer h4 {
+    color: #fffdec;
+    margin-bottom: 1rem;
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #f9f8ed;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-left, .nav-right {
+        flex-basis: auto;
+        width: 100%;
+    }
+
+    .nav-right {
+        margin-top: 1rem;
+        justify-content: center;
+    }
+
+    nav a {
+        margin: 0.5rem;
+    }
+}
+.feature {
+    background-color: #FFEB3B;
+    color: black;
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Changes cursor to pointer on hover */
+}
+
+.feature:hover {
+    transform: scale(1.1); /* Enlarges the feature slightly */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Adds a more pronounced shadow */
+}
+
+
+#testimonials {
+    background-color: #fbf7d1;
+    color: black;
+    padding: 2rem 0;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.main-heading {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #000000;
+}
+
+.image-slider {
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+.slider-container {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slider-item {
+    flex: 0 0 33.333%;
+    padding: 1rem;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.slider-item:hover {
+    transform: scale(1.05);
+}
+
+.slider-item img {
+    width: 100%; /* Full width */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 150px; /* Set a shorter height to fit within the viewport */
+    object-fit: cover; /* Cover the image container */
+    border-radius: 2rem; /* Curvier corners */
+    display: block;
+    margin: 0 auto;
+}
+.image-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 249, 249, 0.7); /* Slightly transparent background */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0.5rem; /* Reduce padding */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 2rem;
+}
+.slider-item:hover .image-content {
+    opacity: 1;
+}
+.image-content p {
+    font-size: 1rem; /* Slightly smaller font size */
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 0.5rem;
+}
+@media (max-width: 768px) {
+    .slider-item {
+        flex: 0 0 100%;
+    }
+
+    .main-heading {
+        font-size: 2rem;
+    }
+}
+.bg-black {
+    background-color: black;
+}
+
+.text-white {
+    color: white;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+.max-w-4xl {
+    max-width: 64rem;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-3xl {
+    font-size: 1.875rem;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+
+.testimonial-slider {
+    position: relative;
+    height: 8rem;
+}
+
+.testimonial {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.testimonial.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Adjust the slider-bar and slide-line to handle breaking and resuming of the line animation */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.bg-black {
+    background-color: black;
+}
+
+.text-white {
+    color: white;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+.max-w-4xl {
+    max-width: 64rem;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-3xl {
+    font-size: 1.875rem;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+
+.testimonial-slider {
+    position: relative;
+    height: 8rem;
+}
+
+.testimonial {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.testimonial.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Adjust the slider-bar and slide-line to handle breaking and resuming of the line animation */
+.slider-bar {
+    position: relative;
+    height: 2px;
+    margin-top: 2rem;
+    overflow: hidden;
+}
+
+.slide-line {
+    position: absolute;
+    top: 0;
+    height: 2px;
+    background-color: gray;
+    width: 0;
+    animation: slide 2s linear forwards;
+}
+
+.slider-bar .slide-line:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.slider-bar .slide-line:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.slider-bar .slide-line:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes slide {
+    0% {
+        width: 0;
+        left: 0;
+    }
+    50% {
+        width: 100%;
+        left: 0;
+    }
+    100% {
+        width: 0;
+        left: 100%;
+    }
+}
+/*slidequote*/
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.bg-black {
+    background-color: black;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    flex-direction: column;
+}
+
+.text-white {
+    color: white;
+}
+
+.text-center {
+    text-align: center;
+}
+
+header {
+    background-color: black;
+    color: #FFD700; /* Golden color for heading */
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+    width: 100%;
+}
+
+.reviews-carousel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    /* max-width: 550px; */
+
+    width: 100%;
+    margin: 0 auto;
+}
+
+.review {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: left; /* Align text to the left */
+}
+
+.review.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+blockquote {
+    position: relative;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    text-align: left; /* Ensure text is left-aligned */
+    margin: 0 auto;
+    max-width: 550px;
+    padding: 0 1rem;
+    color: white;
+}
+
+blockquote::before {
+    content: "“";
+    font-size: 5rem;
+    color: lightgray;
+    position: absolute;
+    top: -0.5rem;
+    left: -2rem;
+}
+
+blockquote::after {
+    content: "”";
+    font-size: 5rem;
+    color: lightgray;
+    position: absolute;
+    bottom: -1rem;
+    right: -2rem;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.indicator-bar {
+    position: relative;
+    height: 2px;
+    margin-top: 2rem;
+    overflow: hidden;
+}
+
+.indicator-line {
+    position: absolute;
+    top: 0;
+    height: 2px;
+    background-color: gray;
+    width: 0;
+    animation: indicator 2s linear forwards;
+}
+
+.indicator-bar .indicator-line:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.indicator-bar .indicator-line:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.indicator-bar .indicator-line:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes indicator {
+    0% {
+        width: 0;
+        left: 0;
+    }
+    50% {
+        width: 100%;
+        left: 0;
+    }
+    100% {
+        width: 0;
+        left: 100%;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    blockquote {
+        font-size: 1.3rem;
+        padding: 0 1rem;
+    }
+    blockquote::before, blockquote::after {
+        font-size: 3rem;
+    }
+    p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    blockquote {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+    blockquote::before, blockquote::after {
+        font-size: 2.5rem;
+    }
+    p {
+        font-size: 1rem;
+    }
+}
