@@ -169,15 +169,21 @@ button:hover {
     background-color: #fffce6;
     color: black;
     padding: 20px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center
+    ;
 }
 
 #about h2 {
     color: black;
 }
-#about .content {
+#about.content {
     text-align: center;
-    position: relative; /* For positioning child elements */
+    position: relative; 
     width: 100%;
+    
 }
 
 #about img {
@@ -257,6 +263,7 @@ h2 {
     color: #333;
 }
 
+
 .feature-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -313,7 +320,7 @@ footer {
     padding: 2rem;
 }
 
-footer .content {
+footer.content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
@@ -420,7 +427,7 @@ footer a:hover {
 .slider-item img {
     width: 100%; /* Full width */
     height: auto; /* Maintain aspect ratio */
-    max-height: 150px; /* Set a shorter height to fit within the viewport */
+    max-height: 500px; /* Set a shorter height to fit within the viewport */
     object-fit: cover; /* Cover the image container */
     border-radius: 2rem; /* Curvier corners */
     display: block;
@@ -432,7 +439,7 @@ footer a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 249, 249, 0.7); /* Slightly transparent background */
+    /* background: rgba(255, 249, 249, 0.7); */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -452,6 +459,29 @@ footer a:hover {
     color: #000000;
     margin-bottom: 0.5rem;
 }
+
+#janvi {
+    width: 15vw; /* Fill the width of its container */
+    height: 15vw; /* Set height to 0 */
+    border-radius: 50%;
+    margin: 20px auto; /* Center the image and add some vertical margin */
+    box-shadow: 0 0 20px 5px #FFEB3B;
+    object-fit: cover; /* Ensure the image covers the entire container */
+    object-position: center; /* Center the image within the container */
+}
+
+#harsh {
+    width: 15vw; /* Fill the width of its container */
+    height: 15vw; /* Set height to match width for a perfect circle */
+    border-radius: 50%;
+    margin: 20px auto; /* Center the image and add some vertical margin */
+    box-shadow: 0 0 20px 5px #FFEB3B;
+    object-fit: cover; /* Ensure the image covers the entire container */
+    object-position: center; 
+    overflow: hidden;
+}
+
+
 @media (max-width: 768px) {
     .slider-item {
         flex: 0 0 100%;
@@ -689,7 +719,7 @@ body, html {
 }
 
 header {
-    background-color: black;
+    /* background-color: rgb(255, 0, 0); */
     color: #FFD700; /* Golden color for heading */
     text-align: center;
     padding: 2rem 0;
@@ -700,6 +730,7 @@ header {
 
 .reviews-carousel {
     position: relative;
+    /* background-color: rgb(0, 94, 255); */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -832,3 +863,4 @@ p {
         font-size: 1rem;
     }
 }
+
