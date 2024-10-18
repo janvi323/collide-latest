@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Match</title>
+    <link rel="stylesheet" href="questions.css">
+</head>
+<body>
+    
+    <div class="sliding-page">
+        <div class="sliding-content">
+            <h1>THE MORE YOU OPEN,THE MORE YOU COLLIDE</h1>
+        </div>
+    </div>
+
+    <div class="container" style="display: none;">
+        <!-- Existing content here -->
+        <div class="gradient-background"></div>
+        <div id="floating-hearts"></div>
+        <div class="background-pattern"></div>
+        
+        <div class="questionnaire-card">
+            <div class="header">
+                <svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                <h1>Find Your Match</h1>
+            </div>
+            <div class="question-container">
+                <h2 id="question"></h2>
+                <div id="options"></div>
+            </div>
+            <div class="navigation">
+                <button id="prevBtn" class="nav-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Previous
+                </button>
+                <button id="nextBtn" class="nav-btn">
+                    Next
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+            <div id="progress" class="progress-dots"></div>
+        </div>
+    </div>
+    
+    <script src="questions.js"></script>      
+</body>
+</html>
