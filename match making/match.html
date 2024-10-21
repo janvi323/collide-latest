@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collide - Onboarding</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .slide-in {
+            animation: slide-in 0.5s forwards;
+        }
+
+        .slide-out {
+            animation: slide-out 0.5s forwards;
+        }
+
+        @keyframes slide-in {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slide-out {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+        }
+
+        .custom-input {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            color: black;
+        }
+
+        .custom-input:focus {
+            outline: none;
+            border-color: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .custom-select {
+            appearance: none;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            padding: 0.75rem;
+            color: black;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .custom-select:hover,
+        .custom-select:focus {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .custom-select::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 1rem;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid black;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .custom-select option {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+        }
+
+        .custom-select option:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-[yellow] flex items-center justify-center h-screen text-black">
+
+    <div id="question-container" class="max-w-lg w-full p-8 rounded-lg text-center bg-opacity-80 backdrop-blur-sm">
+
+        <!-- Logo -->
+        <div class="logo mb-8">
+            <a href="#" class="text-4xl font-extrabold tracking-wider text-black">C💛llide</a>
+        </div>
+
+        <!-- Age Question -->
+        <div id="question1" class="question slide-in">
+            <h2 class="text-3xl font-semibold mb-6">What is your age?</h2>
+            <input type="number" id="age" class="custom-input border border-transparent focus:border-black bg-transparent p-3 rounded-lg w-full mb-4" placeholder="Enter your age" min="15" max="75" required>
+            <p id="age-error" class="text-red-500 hidden">Please enter an age between 15 and 75.</p>
+            <button class="bg-black text-white py-2 px-6 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300" onclick="validateAge()">Next</button>
+        </div>
+
+        <!-- Gender Question -->
+        <div id="question2" class="question hidden">
+            <h2 class="text-3xl font-semibold mb-6">What is your gender?</h2>
+            <select id="gender" class="custom-select w-full p-3 mb-4 rounded-lg focus:ring-black">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="non-binary">Non-binary</option>
+                <option value="prefer-not-to-say">Prefer not to say</option>
+            </select>
+            <button class="bg-black text-white py-2 px-6 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300" onclick="nextQuestion(2)">Next</button>
+        </div>
+
+        <!-- Preferred Partner's Gender Question -->
+        <div id="question3" class="question hidden">
+            <h2 class="text-3xl font-semibold mb-6">Who are you interested in?</h2>
+            <select id="partner-gender" class="custom-select w-full p-3 mb-4 rounded-lg focus:ring-black">
+                <option value="men">Men</option>
+                <option value="women">Women</option>
+                <option value="non-binary">Non-binary</option>
+                <option value="everyone">Everyone</option>
+            </select>
+            <button class="bg-black text-white py-2 px-6 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300" onclick="nextQuestion(3)">Next</button>
+        </div>
+
+        <!-- Location Question -->
+        <div id="question4" class="question hidden">
+            <h2 class="text-3xl font-semibold mb-6">Where do you live?</h2>
+            <input type="text" id="location" class="custom-input border border-transparent focus:border-black bg-transparent p-3 rounded-lg w-full mb-4" placeholder="Enter your location">
+            <button class="bg-black text-white py-2 px-6 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300" onclick="nextQuestion(4)">Next</button>
+        </div>
+
+        <!-- Relationship Goals Question -->
+        <div id="question5" class="question hidden">
+            <h2 class="text-3xl font-semibold mb-6">What are you looking for?</h2>
+            <select id="relationship-goals" class="custom-select w-full p-3 mb-4 rounded-lg text-gray-700 focus:ring-pink-500">
+                <option value="casual-dating">Casual dating</option>
+                <option value="serious-relationship">Serious relationship</option>
+                <option value="friendship">Friendship</option>
+                <option value="marriage">Marriage</option>
+            </select>
+            <button class="bg-pink-600 text-white py-2 px-6 rounded-lg shadow-lg hover:bg-pink-700 transition duration-300" onclick="nextQuestion(5)">Next</button>
+        </div>
+
+        <!-- Love Language Question -->
+        <div id="question6" class="question hidden">
+            <h2 class="text-3xl font-semibold mb-6">What is your primary love language?</h2>
+            <select id="love-language" class="custom-select w-full p-3 mb-4 rounded-lg text-gray-700 focus:ring-pink-500">
+                <option value="words-of-affirmation">Words of Affirmation</option>
+                <option value="acts-of-service">Acts of Service</option>
+                <option value="receiving-gifts">Receiving Gifts</option>
+                <option value="quality-time">Quality Time</option>
+                <option value="physical-touch">Physical Touch</option>
+            </select>
+            <button class="bg-pink-600 text-white py-2 px-6 rounded-lg shadow-lg hover:bg-pink-700 transition duration-300" onclick="nextQuestion(6)">Next</button>
+        </div>
+
+        <!-- Additional Questions -->
+        <div id="question7" class="question hidden">
+            <h2 class="text-3xl font-semibold mb-6">What's your name?</h2>
+            <input type="text" id="name" class="custom-input border border-transparent focus:border-pink-500 bg-transparent text-white p-3 rounded-lg w-full mb-4" placeholder="Enter your name" required>
+            <h2 class="text-3xl font-semibold mb-6">What's your favorite color?</h2>
+            <input type="text" id="color" class="custom-input border border-transparent focus:border-pink-500 bg-transparent text-white p-3 rounded-lg w-full mb-4" placeholder="Enter your favorite color" required>
+            <h2 class="text-3xl font-semibold mb-6">What's your relationship status?</h2>
+            <select id="relationshipStatus" class="custom-select w-full p-3 mb-4 rounded-lg text-gray-700 focus:ring-pink-500">
+                <option value="single">Single</option>
+                <option value="in-a-relationship">In a relationship</option>
+                <option value="it's-complicated">It's complicated</option>
+            </select>
+            <button class="bg-pink-600 text-white py-2 px-6 rounded-lg shadow-lg hover:bg-pink-700 transition duration-300" onclick="submitAnswers()">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        function validateAge() {
+            const age = document.getElementById('age').value;
+            if (age < 15 || age > 75) {
+                document.getElementById('age-error').classList.remove('hidden');
+            } else {
+                document.getElementById('age-error').classList.add('hidden');
+                nextQuestion(1);
+            }
+        }
+
+        function nextQuestion(currentQuestion) {
+            const currentElement = document.getElementById(`question${currentQuestion}`);
+            const nextElement = document.getElementById(`question${currentQuestion + 1}`);
+
+            currentElement.classList.add('slide-out');
+            setTimeout(() => {
+                currentElement.classList.add('hidden');
+                nextElement.classList.remove('hidden');
+                nextElement.classList.add('slide-in');
+            }, 500);
+        }
+
+        function submitAnswers() {
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            const partnerGender = document.getElementById('partner-gender').value;
+            const location = document.getElementById('location').value;
+            const relationshipGoals = document.getElementById('relationship-goals').value;
+            const loveLanguage = document.getElementById('love-language').value;
+            const name = document.getElementById('name').value;
+            const color = document.getElementById('color').value;
+            const relationshipStatus = document.getElementById('relationshipStatus').value;
+
+            const userData = {
+                name,
+                age: parseInt(age),
+                gender,
+                partnerGender,
+                location,
+                relationshipGoals,
+                loveLanguage,
+                color,
+                relationshipStatus
+            };
+
+            let storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+            storedUsers.push(userData);
+            localStorage.setItem('users', JSON.stringify(storedUsers));
+
+            const match = findBestMatch(userData, storedUsers);
+
+            if (match) {
+                localStorage.setItem('matchData', JSON.stringify(match));
+            } else {
+                localStorage.setItem('matchData', null);
+            }
+
+            window.location.href = 'result.html';
+        }
+
+        function findBestMatch(newUser, storedUsers) {
+            let bestMatch = null;
+            let highestScore = 0;
+
+            storedUsers.forEach(user => {
+                if (user.name !== newUser.name) {
+                    let score = 0;
+
+                    if (user.color === newUser.color) score += 1;
+                    if (Math.abs(user.age - newUser.age) <= 5) score += 1;
+                    if (user.relationshipStatus === newUser.relationshipStatus) score += 1;
+                    if (user.location === newUser.location) score += 1;
+                    if (user.loveLanguage === newUser.loveLanguage) score += 1;
+
+                    if (score >= 2 && score > highestScore) {
+                        highestScore = score;
+                        bestMatch = user;
+                    }
+                }
+            });
+
+            return bestMatch;
+        }
+    </script>
+</body>
+
+</html>

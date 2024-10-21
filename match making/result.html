@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Result - Collide</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .fade-in {
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 flex items-center justify-center h-screen text-white">
+    <div class="text-center fade-in max-w-lg p-8 bg-opacity-80 backdrop-blur-sm rounded-lg">
+        <h1 class="text-4xl font-bold mb-6">Your Match Result</h1>
+        <div id="matchDetails" class="text-xl font-semibold"></div>
+        <a href="../proj_collide💛/welcome.html" class="mt-6 inline-block bg-pink-600 text-white py-2 px-6 rounded-lg shadow-lg hover:bg-pink-700 transition duration-300">Go back to Home</a>
+        <a href="#" class="mt-6 ml-5 inline-block bg-pink-600 text-white py-2 px-6 rounded-lg shadow-lg hover:bg-pink-700 transition duration-300">Explore Profile</a>
+    </div>
+
+    <script>
+        // Retrieve match data from localStorage
+        const match = JSON.parse(localStorage.getItem('matchData'));
+        const matchDetails = document.getElementById('matchDetails');
+
+        if (match) {
+            matchDetails.innerHTML = `
+                <p><strong>Name:</strong> ${match.name}</p>
+                <p><strong>Age:</strong> ${match.age}</p>
+                <p><strong>Favorite Color:</strong> ${match.color}</p>
+                <p><strong>Relationship Status:</strong> ${match.relationshipStatus}</p>
+                <p><strong>Love Language:</strong> ${match.loveLanguage}</p>
+                <p><strong>Location:</strong> ${match.location}</p>
+            `;
+        } else {
+            matchDetails.innerHTML = '<p>No match found yet!</p>';
+        }
+    </script>
+</body>
+</html>

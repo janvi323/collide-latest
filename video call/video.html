@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Call</title>
+    <link rel="stylesheet" href="video.css"> <!-- Ensure this file path is correct -->
+</head>
+<body>
+    <div class="header">
+        <h1 class="logo">c💛llide</h1>
+    </div>
+
+    <div class="container">
+        <!-- Left side for video call -->
+        <div id="left-video">
+            <div id="jitsi-container"></div>
+        </div>
+
+        <!-- Right side for chat -->
+        <div id="right-chat">
+            <header>
+                <h2>When Paths Align, <span>LOVE C💛llide</span></h2>
+                <p>Bridging hearts, no matter how far.</p>
+            </header>
+
+            <div class="chat-content">
+                <div class="profile">
+                    <img src="../proj_collide💛/welcomepagepic/couple1.jpg" alt="Profile" class="profile-pic">
+                    <h3>Misty</h3>
+                </div>
+
+                <div class="chat-box">
+                    <p class="inactive-message">Chat will be available when the call ends.</p>
+                </div>
+            </div>
+
+            <footer>
+                <button id="back-home" class="btn-back">Go to Home</button>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://meet.jit.si/external_api.js"></script> <!-- Ensure this loads first -->
+    <script src="video.js"></script> <!-- Ensure this file path is correct -->
+</body>
+</html>

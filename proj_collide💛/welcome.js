@@ -1,3 +1,12 @@
+function redirectToMatch() {
+    // Redirect to match.html
+    window.location.href = "../match making/match.html";
+}
+function redirectToVideo() {
+    // Redirect to match.html
+    window.location.href = "../video call/video.html";
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Initial loading animation
     const loadingScreen = document.getElementById('loading-screen');
