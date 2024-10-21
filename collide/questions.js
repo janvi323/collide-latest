@@ -1,15 +1,15 @@
 const questions = [
     { question: "What is your name?", inputType: "text" },
-    { question: "How you recognize yourself?",
-        options: ["MEN", "WOMEN", "NON BINARY", "Prefer Not to Say"]
+    { question: "What do you identify as?",
+        options: ["Male", "Female", "Non-Binary", "Prefer Not to Say"]
 
     },
     { question: "Who would you like to date?",
-        options: ["MEN", "WOMEN", "NON BINARY", "EVERYONE"]
+        options: ["Men", "Women", "No Preference"]
 
     },
-    { question: "What is your dating intention?",
-        options: ["Life partner", "Long-term Relationship", "Short-term relationship", "FIguring out my goals"]
+    { question: "What are you looking for?",
+        options: ["Life partner", "Long-term Relationship", "Short-term relationship", "Not sure"]
 
     },
     {
@@ -18,7 +18,7 @@ const questions = [
     },
     {
         question: "My ideal first date would be...",
-        options: ["Coffee shop", "Fancy dinner", "Outdoor adventure", "Art gallery"]
+        options: ["At a Coffee shop", "A Fancy dinner", "An Outdoor adventure", "A visit to the Art gallery"]
     },
     {
         question: "I value most in a partner...",
