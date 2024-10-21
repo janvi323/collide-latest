@@ -1,4 +1,4 @@
-![Collide](https://github.com/user-attachments/assets/2539f351-3def-456d-abd0-d67f8f47f263)
+  <center>![Collide](https://github.com/user-attachments/assets/2539f351-3def-456d-abd0-d67f8f47f263)</center>
 
 # C💛llide - Dating App
 
