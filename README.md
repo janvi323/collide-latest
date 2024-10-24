@@ -1,18 +1,21 @@
-![Collide](https://github.com/user-attachments/assets/2539f351-3def-456d-abd0-d67f8f47f263)
+![Collide](https://github.com/user-attachments/assets/ed6dfd81-a13a-4b43-b444-51bdd9e476da)
 
 # C💛llide - Dating App
 
 Welcome to **C💛llide**, the dating app designed to bring hearts together. Our platform is all about creating meaningful connections that last. Whether you're looking for a deep connection or just someone to vibe with, C💛llide is here to help you find your match.
 
-![welcome](https://github.com/user-attachments/assets/95eb2fad-9f8c-44cc-ad53-a5d803a092be)
+![welcome](https://github.com/user-attachments/assets/d4b214ea-eab2-4f0f-8986-f370cb465d06)
+
 
 
 - **Smart Matching**: Metric based compatibility matches.
 - **Safety First**: Your security is our priority.
 - **All Love is Equal**: Inclusive space for everyone.
+- **Video Dates**: Connect face-to-face virtually.
 
-![questions](https://github.com/user-attachments/assets/fda6262a-c152-445f-b095-41956b36d72f)
+![questions](https://github.com/user-attachments/assets/b88b0873-ca49-4e17-a163-3172cf223548)
+
 
 Join **C💛llide** today and start your journey to find your perfect match!
 
-![success](https://github.com/user-attachments/assets/1cf72abb-f0d0-4636-9971-4d6fc6d39913)
+![success](https://github.com/user-attachments/assets/23319504-f175-431e-acbb-385b9447a38e)
