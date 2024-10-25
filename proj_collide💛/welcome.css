@@ -462,7 +462,7 @@ footer a:hover {
     margin-bottom: 0.5rem;
 }
 
-#janvi {
+#cofounder {
     width: 15vw; /* Fill the width of its container */
     height: 15vw; /* Set height to 0 */
     border-radius: 50%;
@@ -470,39 +470,6 @@ footer a:hover {
     box-shadow: 0 0 20px 5px #FFEB3B;
     object-fit: cover; /* Ensure the image covers the entire container */
     object-position: center; /* Center the image within the container */
-}
-
-#harsh {
-    width: 15vw; /* Fill the width of its container */
-    height: 15vw; /* Set height to match width for a perfect circle */
-    border-radius: 50%;
-    margin: 20px auto; /* Center the image and add some vertical margin */
-    box-shadow: 0 0 20px 5px #FFEB3B;
-    object-fit: cover; /* Ensure the image covers the entire container */
-    object-position: center; 
-    overflow: hidden;
-}
-
-#monica {
-    width: 15vw; /* Fill the width of its container */
-    height: 15vw; /* Set height to match width for a perfect circle */
-    border-radius: 50%;
-    margin: 20px auto; /* Center the image and add some vertical margin */
-    box-shadow: 0 0 20px 5px #FFEB3B;
-    object-fit: cover; /* Ensure the image covers the entire container */
-    object-position: center; 
-    overflow: hidden;
-}
-
-#kanav {
-    width: 15vw; /* Fill the width of its container */
-    height: 15vw; /* Set height to match width for a perfect circle */
-    border-radius: 50%;
-    margin: 20px auto; /* Center the image and add some vertical margin */
-    box-shadow: 0 0 20px 5px #FFEB3B;
-    object-fit: cover; /* Ensure the image covers the entire container */
-    object-position: center; 
-    overflow: hidden;
 }
 
 @media (max-width: 768px) {
