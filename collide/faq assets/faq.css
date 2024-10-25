@@ -373,7 +373,7 @@ footer a:hover {
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
-    background: rgba(255, 255, 99, 0.945);
+    background: #FFEB3B;
     border-radius: 10px;
 }
 .accordion__question p{
