@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: 'Lucida Handwriting';
     src: url('/path-to-your-font/LucidaHandwriting.ttf') format('truetype');
@@ -482,6 +483,27 @@ footer a:hover {
     overflow: hidden;
 }
 
+#monica {
+    width: 15vw; /* Fill the width of its container */
+    height: 15vw; /* Set height to match width for a perfect circle */
+    border-radius: 50%;
+    margin: 20px auto; /* Center the image and add some vertical margin */
+    box-shadow: 0 0 20px 5px #FFEB3B;
+    object-fit: cover; /* Ensure the image covers the entire container */
+    object-position: center; 
+    overflow: hidden;
+}
+
+#kanav {
+    width: 15vw; /* Fill the width of its container */
+    height: 15vw; /* Set height to match width for a perfect circle */
+    border-radius: 50%;
+    margin: 20px auto; /* Center the image and add some vertical margin */
+    box-shadow: 0 0 20px 5px #FFEB3B;
+    object-fit: cover; /* Ensure the image covers the entire container */
+    object-position: center; 
+    overflow: hidden;
+}
 
 @media (max-width: 768px) {
     .slider-item {
@@ -865,3 +887,38 @@ p {
     }
 }
 
+.layout{
+    width: 600px;
+    margin: auto;
+}
+.accordion{
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 99, 0.945);
+    border-radius: 10px;
+}
+.accordion__question p{
+    margin: 5px;
+    padding: 0;
+    font-family: Verdana;
+    font-size: 20px;
+}
+.accordion__answer p{
+    margin: 5px;
+    padding: 10px;
+    font-size: large;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(255, 255, 255);
+    background: #FFD700;
+    border-radius: 10px; 
+}
+.accordion:hover{
+    cursor: pointer;
+}
+.accordion__answer {
+    display: none;
+} 
+.accordion.active .accordion__answer {
+    display: block;
+}
