@@ -223,9 +223,30 @@ const reviews = document.querySelectorAll('.review');
         line.addEventListener('click', () => {
             showReview(index);
             currentReview = index; // Update the current review
-        });
-    });
 
+
+        });
+        const sections = [
+            { id: 'about', animatedClass: 'animate-text', visibleClass: 'visible' },
+            { id: 'inclusivity', animatedClass: 'animate-text1', visibleClass: 'visible' }
+        ];
+    
+        sections.forEach(section => {
+            const sectionElement = document.getElementById(section.id);
+            const animatedElements = sectionElement.querySelectorAll(`.${section.animatedClass}`);
+    
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animatedElements.forEach(el => el.classList.add(section.visibleClass));
+                    } else {
+                        animatedElements.forEach(el => el.classList.remove(section.visibleClass));
+                    }
+                });
+            }, { threshold: 0.1 });
+    
+            observer.observe(sectionElement);
+        });
     
     let answers=document.querySelectorAll(".accordion");
         answers.forEach((event)=>{
@@ -236,5 +257,7 @@ const reviews = document.querySelectorAll('.review');
                 else{
                     event.classList.add("active");
                 }
-            })
+                    });
+                });
+        
         })

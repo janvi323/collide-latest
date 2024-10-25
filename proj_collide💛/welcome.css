@@ -166,85 +166,174 @@ button:hover {
     right: 1rem;
 }
 
+/* About Section */
 #about {
     background-color: #fffce6;
-    color: black;
-    padding: 20px;
-    display:flex;
-    flex-direction: row;
+    color: #333;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: row; /* Image on the left, text on the right */
     justify-content: space-between;
-    align-items: center
-    ;
+    align-items: center;
+    overflow: hidden;
+}
+
+#about .image-container {
+    flex: 0 0 40%;
+    margin-right: 40px;
+}
+
+#about .content {
+    flex: 1;
+    text-align: left;
 }
 
 #about h2 {
-    color: black;
-}
-#about.content {
-    text-align: center;
-    position: relative; 
-    width: 100%;
-    
+    color: #1a1a1a;
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
+#about p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Image Styling */
 #about img {
-    width: 100%;
-    max-width: 300px; /* Adjust this value as needed */
-    height: auto; /* Maintain aspect ratio */
-    max-height: 225px; /* Set a max-height proportional to the width */
-    object-fit: cover; /* Ensure the image covers the area without distortion */
-    border-radius: 8px; /* Optional: for rounded corners */
-    margin-top: 15px; /* Optional: to add space above the image */
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+#about img:hover {
+    transform: scale(1.05);
+}
+
+/* Animation for About Section Text */
+.animate-text {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.animate-text.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#about h2.animate-text {
+    transition-delay: 0.3s;
+}
+
+#about p.animate-text {
+    transition-delay: 0.6s;
+}
+
+/* About Section - Mobile Responsive */
+@media (max-width: 768px) {
+    #about {
+        flex-direction: column;
+    }
+
+    #about .image-container {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    #about .content {
+        text-align: center;
+    }
 }
 
 
 
-
-
-
-
+/* Inclusivity Section */
 #inclusivity {
     background-color: #f9f6db;
-    color: black;
+    color: #333;
     padding: 4rem 2rem;
-    text-align: center;
+    display: flex;
+    flex-direction: row-reverse; /* Flip the content and image */
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
 }
 
-.inclusivity-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-   
+#inclusivity .image-container {
+    flex: 0 0 40%;
+    margin-left: 40px; /* Margin adjusted to the left to separate from text */
 }
 
-.inclusivity-item {
-    background-color: #f7f5de;
-    color: black;
-    padding: 2rem;
-    border-radius: 1rem;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+#inclusivity .content {
+    flex: 1;
+    text-align: left;
 }
 
-.inclusivity-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+#inclusivity h2 {
+    color: #1a1a1a;
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
-.inclusivity .icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+#inclusivity p {
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
+
 #inclusivity img {
     max-width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    width: 200px; /* Adjust width as needed */
-    margin-top: 1rem; /* Optional: adjust space above the image */
-    border-radius: 3rem; /* Makes corners curvy */
-    padding: 1rem; /* Padding inside the image container */
-    background-color: #f7f5de; /* Yellow padding color */
+    height: auto;
+    width: 200px;
+    border-radius: 3rem;
+    padding: 1rem;
+    background-color: #f7f5de;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
+
+#inclusivity img:hover {
+    transform: scale(1.05);
+}
+
+/* Animation for Inclusivity Section Text */
+.animate-text1 {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.animate-text1.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#inclusivity h2.animate-text1 {
+    transition-delay: 0.3s;
+}
+
+#inclusivity p.animate-text1 {
+    transition-delay: 0.6s;
+}
+
+/* Inclusivity Section - Mobile Responsive */
+@media (max-width: 768px) {
+    #inclusivity {
+        flex-direction: column;
+    }
+
+    #inclusivity .image-container {
+        margin-left: 0; /* Remove margin for mobile layout */
+        margin-bottom: 20px;
+    }
+
+    #inclusivity .content {
+        text-align: center;
+    }
+}
+
 
 #features {
     padding: 3rem 0;
@@ -268,7 +357,7 @@ h2 {
 .feature-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    gap: 2rem;
     max-width: 600px;
     margin: 0 auto;
 }
