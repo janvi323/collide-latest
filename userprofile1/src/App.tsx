@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Eye, EyeOff, ChevronDown, ChevronUp, X, Plus, Edit2, ArrowLeft, Camera, Mic, PieChart } from 'lucide-react'
-import { FaWheelchair, FaFistRaised, FaDog, FaCarrot, FaPray, FaPills, FaSmokingBan, FaBeer, FaCannabis } from 'react-icons/fa'
+import { FaBabyCarriage, FaUser, FaMapMarkerAlt, FaGlobe, FaCannabis, FaSmoking, FaSmokingBan, FaWineGlassAlt, FaBriefcase, FaGraduationCap, FaBook, FaHome, FaSearch } from 'react-icons/fa'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -12,40 +12,37 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Toaster, toast } from 'react-hot-toast'
 import { useTheme } from 'next-themes'
+import './App.css';
 
 gsap.registerPlugin(ScrollTrigger)
 
-const icons = {
-  religion: [<FaPray key="pray" />, <FaFistRaised key="fist" />, <FaDog key="dog" />, <FaCarrot key="carrot" />],
-  medicines: [<FaPills key="pills" />, <FaSmokingBan key="smoking-ban" />],
-  drugs: [<FaSmokingBan key="smoking-ban" />, <FaBeer key="beer" />, <FaCannabis key="cannabis" />],
-  pets: [<FaDog key="dog" />],
-  diet: [<FaCarrot key="carrot" />],
-}
-
 export default function Component() {
   const [userData, setUserData] = useState({
-    // ... (previous user data)
-
     name: 'Apeksha Rathi',
     age: 28,
     hometown: { value: 'Chandigarh', isVisible: true },
     politics: { value: 'Liberal', isVisible: true },
     languages: { value: 'English, Hindi', isVisible: true },
-    DatingIntentions: { value: 'Life partner', isVisible: true },
+    datingIntentions: { value: 'Life partner', isVisible: true },
     relationshipType: { value: 'Non-monogamy', isVisible: true },
     drinking: { value: 'No', isVisible: true },
     smoking: { value: 'Sometimes', isVisible: true },
     marijuana: { value: 'Yes', isVisible: true },
     drugs: { value: 'Prefer not to say', isVisible: false },
-    religion: { value: '🕉️', isVisible: true },
-    medicines: { value: '🚫', isVisible: true },
-    pets: { value: '🐱', isVisible: true },
-    diet: { value: '🥕', isVisible: true },
+    religion: { value: 'Hinduism', isVisible: true },
+    medicines: { value: 'None', isVisible: true },
+    pets: { value: 'Cat lover', isVisible: true },
+    diet: { value: 'Vegetarian', isVisible: true },
+    children: { value: "Don't have children", isVisible: true },
+    location: { value: 'Chandigarh, India', isVisible: true },
+    ethnicity: { value: 'Asian', isVisible: true },
+    job: { value: 'Software Engineer', isVisible: true },
+    education: { value: "Bachelor's Degree", isVisible: true },
+    currentResidence: { value: 'Apartment', isVisible: true },
     photos: [
-      'https://images.pexels.com/photos/15798712/pexels-photo-15798712/free-photo-of-woman-posing-with-flowers-in-background.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://images.pexels.com/photos/15798712/pexels-photo-15798712/free-photo-of-woman-posing-with-flowers-in-background.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2Fp%2FDiksha-Singh-100044158970378%2F&psig=AOvVaw1VLVvaJqKZzHSWeQ6UPlVh&ust=1729525753138000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIjAyd-nnYkDFQAAAAAdAAAAABAE',
+      '/placeholder.svg?height=300&width=300',
+      '/placeholder.svg?height=300&width=300',
+      '/placeholder.svg?height=300&width=300',
     ],
     topPhotoEnabled: true,
     writtenPrompts: [
@@ -61,7 +58,6 @@ export default function Component() {
       { question: 'Best first date?', options: ['Coffee', 'Dinner', 'Adventure', 'Movie'], votes: [10, 15, 20, 5] },
       { question: 'Ideal vacation?', options: ['Beach', 'Mountains', 'City', 'Staycation'], votes: [25, 30, 15, 10] },
     ],
-    
   })
 
   const [activeTab, setActiveTab] = useState('edit')
@@ -71,6 +67,7 @@ export default function Component() {
   const [isLoading, setIsLoading] = useState(false)
 
   const containerRef = useRef(null)
+  const sliderRef = useRef(null)
   const { theme, setTheme } = useTheme()
 
   useEffect(() => {
@@ -122,7 +119,6 @@ export default function Component() {
   }
 
   const handleAddPhoto = () => {
-    // Simulating file upload
     setIsLoading(true)
     setTimeout(() => {
       const newPhoto = '/placeholder.svg?height=300&width=300'
@@ -192,53 +188,125 @@ export default function Component() {
     toast.success('New poll option added')
   }
 
-  const renderSection = (title, fields) => (
+  const renderUserDetails = () => (
     <Card className="mb-6">
-      <CardHeader className="bg-primary/10 cursor-pointer" onClick={() => toggleSection(title)}>
-        <CardTitle className="flex items-center justify-between">
-          <span>{title}</span>
-          {expandedSection === title ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-        </CardTitle>
+      <CardHeader>
+        <CardTitle>User Details</CardTitle>
       </CardHeader>
-      {expandedSection === title && (
-        <CardContent className="space-y-4 mt-4">
-          {fields.map(field => (
-            <div key={field} className="flex items-center justify-between py-2 border-b">
-              <div>
-                <Label htmlFor={field}>{field}</Label>
-                {editingField === field ? (
-                  <Input
-                    id={field}
-                    value={editValue}
-                    onChange={(e) => setEditValue(e.target.value)}
-                    className="mt-1"
-                  />
-                ) : (
-                  <p className="text-sm text-muted-foreground">{userData[field].value || 'Not answered yet'}</p>
-                )}
+      <CardContent>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 w-full">
+          <div className="overflow-x-auto scrollbar-hide" ref={sliderRef}>
+            <div className="flex justify-between items-center mb-4 border-b pb-2 w-max">
+              <div className="flex flex-col items-center mr-4">
+                <FaBabyCarriage className="text-2xl mb-1" />
+                <span className="text-sm">{userData.children.value}</span>
               </div>
-              <div className="flex items-center space-x-2">
-                {editingField === field ? (
-                  <>
-                    <Button onClick={handleSave} disabled={isLoading}>
-                      {isLoading ? 'Saving...' : 'Save'}
-                    </Button>
-                    <Button onClick={handleCancel} variant="outline">Cancel</Button>
-                  </>
-                ) : (
-                  <Button onClick={() => handleEdit(field)} variant="outline">
-                    Edit
-                  </Button>
-                )}
-                <Switch
-                  checked={userData[field].isVisible}
-                  onCheckedChange={() => handleVisibilityToggle(field)}
-                />
+              <div className="flex flex-col items-center mr-4">
+                <FaUser className="text-2xl mb-1" />
+                <span className="text-sm">{userData.age} years old</span>
+              </div>
+              <div className="flex flex-col items-center mr-4">
+                <FaMapMarkerAlt className="text-2xl mb-1" />
+                <span className="text-sm">{userData.location.value}</span>
+              </div>
+              <div className="flex flex-col items-center mr-4">
+                <FaGlobe className="text-2xl mb-1" />
+                <span className="text-sm">{userData.ethnicity.value}</span>
+              </div>
+              <div className="flex flex-col items-center mr-4">
+                <FaCannabis className="text-2xl mb-1" />
+                <span className="text-sm">{userData.drugs.value}</span>
+              </div>
+              <div className="flex flex-col items-center mr-4">
+                <FaSmoking className="text-2xl mb-1" />
+                <span className="text-sm">{userData.marijuana.value}</span>
+              </div>
+              <div className="flex flex-col items-center mr-4">
+                <FaSmokingBan className="text-2xl mb-1" />
+                <span className="text-sm">{userData.smoking.value}</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <FaWineGlassAlt className="text-2xl mb-1" />
+                <span className="text-sm">{userData.drinking.value}</span>
               </div>
             </div>
-          ))}
-        </CardContent>
-      )}
+          </div>
+          <div className="space-y-4">
+            <div className="flex items-center border-b pb-2">
+              <FaBriefcase className="mr-2 text-xl" />
+              <span>{userData.job.value}</span>
+            </div>
+            <div className="flex items-center border-b pb-2">
+              <FaGraduationCap className="mr-2 text-xl" />
+              <span>{userData.education.value}</span>
+            </div>
+            <div className="flex items-center border-b pb-2">
+              <FaBook className="mr-2 text-xl" />
+              <span>{userData.religion.value}</span>
+            </div>
+            <div className="flex items-center border-b pb-2">
+              <FaHome className="mr-2 text-xl" />
+              <span>{userData.currentResidence.value}</span>
+            </div>
+            <div className="flex items-center">
+              <FaSearch className="mr-2 text-xl" />
+              <span>{userData.datingIntentions.value}</span>
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  )
+
+  const renderEditableUserDetails = () => (
+    <Card className="mb-6">
+      <CardHeader>
+        <CardTitle>User Details</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4">
+          {Object.entries(userData).map(([key, value]) => {
+            if (typeof value === 'object' && 'isVisible' in value) {
+              return (
+                <div key={key} className="flex items-center justify-between py-2 border-b">
+                  <div>
+                    <Label htmlFor={key}>{key}</Label>
+                    {editingField === key ? (
+                      <Input
+                        id={key}
+                        value={editValue}
+                        onChange={(e) => setEditValue(e.target.value)}
+                        className="mt-1"
+                      />
+                    ) : (
+                      <p className="text-sm text-muted-foreground">{value.value}</p>
+                    )}
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    {editingField === key ? (
+                      <>
+                        <Button onClick={handleSave} disabled={isLoading}>
+                          {isLoading ? 'Saving...' : 'Save'}
+                        </Button>
+                        <Button onClick={handleCancel} variant="outline">Cancel</Button>
+                      </>
+                    ) : (
+                      <Button onClick={() => handleEdit(key)} variant="outline">
+                        Edit
+                      </Button>
+                    )}
+                    <Switch
+                      checked={value.isVisible}
+                      onCheckedChange={() => handleVisibilityToggle(key)}
+                    />
+                  </div>
+                </div>
+              )
+            }
+            return null
+          })}
+        </div>
+      </CardContent>
     </Card>
   )
 
@@ -277,6 +345,42 @@ export default function Component() {
     </Card>
   )
 
+  useEffect(() => {
+    const slider = sliderRef.current
+    if (slider) {
+      slider.style.overflow = 'hidden'
+      
+      let isDown = false
+      let startX
+      let scrollLeft
+
+      slider.addEventListener('mousedown', (e) => {
+        isDown = true
+        slider.style.cursor = 'grabbing'
+        startX = e.pageX - slider.offsetLeft
+        scrollLeft = slider.scrollLeft
+      })
+
+      slider.addEventListener('mouseleave', () => {
+        isDown = false
+        slider.style.cursor = 'grab'
+      })
+
+      slider.addEventListener('mouseup', () => {
+        isDown = false
+        slider.style.cursor = 'grab'
+      })
+
+      slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return
+        e.preventDefault()
+        const x = e.pageX - slider.offsetLeft
+        const walk = (x - startX) * 2
+        slider.scrollLeft = scrollLeft - walk
+      })
+    }
+  }, [])
+
   return (
     <div ref={containerRef} className="min-h-screen bg-background p-4 sm:p-6 lg:p-8">
       <Toaster />
@@ -285,7 +389,7 @@ export default function Component() {
           <Button variant="ghost">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
           </Button>
-          <h1 className="text-3xl font-bold">Apeksha Rathi • 56%</h1>
+          <h1 className="text-3xl font-bold">{userData.name} • 56%</h1>
           <Button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
             Toggle {theme === 'dark' ? 'Light' : 'Dark'} Mode
           </Button>
@@ -356,6 +460,8 @@ export default function Component() {
               </CardContent>
             </Card>
 
+            {renderEditableUserDetails()}
+
             <Card>
               <CardHeader>
                 <CardTitle>Written Prompts</CardTitle>
@@ -408,13 +514,8 @@ export default function Component() {
                   <Mic className="mr-2 h-4 w-4" />
                   Add Voice Prompt
                 </Button>
-              
               </CardContent>
             </Card>
-
-            {renderSection('Basic Info', ['hometown', 'politics', 'languages'])}
-            {renderSection('Dating Preferences', ['datingIntentions', 'relationshipType'])}
-            {renderSection('Lifestyle', ['drinking', 'smoking', 'marijuana', 'drugs'])}
 
             <Card>
               <CardHeader>
@@ -437,19 +538,7 @@ export default function Component() {
                 <div className="p-6">
                   <h2 className="text-2xl font-semibold mb-2">{userData.name}, {userData.age}</h2>
                   <p className="text-muted-foreground mb-4">{userData.hometown.value}</p>
-                  <div className="space-y-4">
-                    {Object.entries(userData).map(([key, value]) => {
-                      if (typeof value === 'object' && 'isVisible' in value && value.isVisible) {
-                        return (
-                          <div key={key} className="bg-primary/5 rounded-lg p-4">
-                            <h3 className="font-semibold mb-2">{key}</h3>
-                            <p>{value.value}</p>
-                          </div>
-                        )
-                      }
-                      return null
-                    })}
-                  </div>
+                  {renderUserDetails()}
                 </div>
               </CardContent>
             </Card>

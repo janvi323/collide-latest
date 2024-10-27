@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Eye, EyeOff, ChevronDown, ChevronUp, X, Plus, Edit2, ArrowLeft, Camera, Mic, PieChart } from 'lucide-react'
+import { Eye, EyeOff, ChevronDown, ChevronUp, X, Plus, Edit2, ArrowLeft, Camera, Mic, PieChart, Sun, Moon } from 'lucide-react'
 import { FaWheelchair, FaFistRaised, FaDog, FaCarrot, FaPray, FaPills, FaSmokingBan, FaBeer, FaCannabis } from 'react-icons/fa'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -23,6 +23,68 @@ const icons = {
   diet: [<FaCarrot key="carrot" />],
 }
 
+const UserProfileHeader = ({ name, age, hometown }) => (
+  <div className="mb-6">
+    <h2 className="text-2xl font-semibold mb-2">{name}, {age}</h2>
+    <p className="text-muted-foreground">{hometown}</p>
+  </div>
+)
+
+const UserPhotos = ({ photos, onRemovePhoto, onAddPhoto, isLoading }) => (
+  <Card>
+    <CardHeader>
+      <CardTitle className="flex items-center">
+        <Camera className="mr-2 h-5 w-5" />
+        My Photos & Videos
+      </CardTitle>
+    </CardHeader>
+    <CardContent>
+      <div className="grid grid-cols-3 gap-4 mb-4">
+        {photos.map((photo, index) => (
+          <div key={index} className="relative aspect-square group">
+            <img src={photo} alt={`User photo ${index + 1}`} className="w-full h-full object-cover rounded-md transition-transform duration-200 group-hover:scale-105" />
+            <Button
+              variant="destructive"
+              size="icon"
+              className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+              onClick={() => onRemovePhoto(index)}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
+        ))}
+        {Array.from({ length: Math.max(0, 6 - photos.length) }).map((_, index) => (
+          <Button
+            key={`add-${index}`}
+            variant="outline"
+            className="aspect-square flex items-center justify-center"
+            onClick={onAddPhoto}
+            disabled={isLoading}
+          >
+            {isLoading ? 'Uploading...' : <Plus className="h-6 w-6" />}
+          </Button>
+        ))}
+      </div>
+    </CardContent>
+  </Card>
+)
+
+const DarkModeToggle = () => {
+  const { theme, setTheme } = useTheme()
+
+  return (
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+    >
+      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+      <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      <span className="sr-only">Toggle theme</span>
+    </Button>
+  )
+}
+
 export default function Component() {
   const [userData, setUserData] = useState({
     name: 'Apeksha Rathi',
@@ -30,20 +92,20 @@ export default function Component() {
     hometown: { value: 'Chandigarh', isVisible: true },
     politics: { value: 'Liberal', isVisible: true },
     languages: { value: 'English, Hindi', isVisible: true },
-    DatingIntentions: { value: 'Life partner', isVisible: true },
+    datingIntentions: { value: 'Life partner', isVisible: true },
     relationshipType: { value: 'Non-monogamy', isVisible: true },
     drinking: { value: 'No', isVisible: true },
     smoking: { value: 'Sometimes', isVisible: true },
     marijuana: { value: 'Yes', isVisible: true },
     drugs: { value: 'Prefer not to say', isVisible: false },
-    religion: { value: '🕉️', isVisible: true },
-    medicines: { value: '🚫', isVisible: true },
-    pets: { value: '🐱', isVisible: true },
-    diet: { value: '🥕', isVisible: true },
+    religion: { value: 'Hindu', isVisible: true },
+    medicines: { value: 'None', isVisible: true },
+    pets: { value: 'Cat lover', isVisible: true },
+    diet: { value: 'Vegetarian', isVisible: true },
     photos: [
-      'https://images.pexels.com/photos/15798712/pexels-photo-15798712/free-photo-of-woman-posing-with-flowers-in-background.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://images.pexels.com/photos/15798712/pexels-photo-15798712/free-photo-of-woman-posing-with-flowers-in-background.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2Fp%2FDiksha-Singh-100044158970378%2F&psig=AOvVaw1VLVvaJqKZzHSWeQ6UPlVh&ust=1729525753138000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIjAyd-nnYkDFQAAAAAdAAAAABAE',
+      '/placeholder.svg?height=300&width=300',
+      '/placeholder.svg?height=300&width=300',
+      '/placeholder.svg?height=300&width=300',
     ],
     topPhotoEnabled: true,
     writtenPrompts: [
@@ -51,15 +113,11 @@ export default function Component() {
       { prompt: "Don't hate me if I", response: 'Snap on u sometimes' },
       { prompt: 'I want someone who', response: 'Likes with a sprinkle of sparkle and a dash of charm' },
     ],
-    voicePrompts: [
-      // { prompt: 'My favorite joke', audioUrl: 'https://example.com/audio1.mp3' },
-      // { prompt: 'My best impression', audioUrl: 'https://example.com/audio2.mp3' },
-    ],
+    voicePrompts: [],
     polls: [
       { question: 'Best first date?', options: ['Coffee', 'Dinner', 'Adventure', 'Movie'], votes: [10, 15, 20, 5] },
       { question: 'Ideal vacation?', options: ['Beach', 'Mountains', 'City', 'Staycation'], votes: [25, 30, 15, 10] },
     ],
-    // ... (previous user data)
   })
 
   const [activeTab, setActiveTab] = useState('edit')
@@ -69,7 +127,6 @@ export default function Component() {
   const [isLoading, setIsLoading] = useState(false)
 
   const containerRef = useRef(null)
-  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     const container = containerRef.current
@@ -99,6 +156,10 @@ export default function Component() {
   }
 
   const handleSave = () => {
+    if (!editValue.trim()) {
+      toast.error('Field cannot be empty')
+      return
+    }
     setIsLoading(true)
     setTimeout(() => {
       setUserData(prevData => ({
@@ -120,7 +181,6 @@ export default function Component() {
   }
 
   const handleAddPhoto = () => {
-    // Simulating file upload
     setIsLoading(true)
     setTimeout(() => {
       const newPhoto = '/placeholder.svg?height=300&width=300'
@@ -156,6 +216,10 @@ export default function Component() {
   }
 
   const handleSavePrompt = (index) => {
+    if (!editValue.trim()) {
+      toast.error('Prompt response cannot be empty')
+      return
+    }
     setIsLoading(true)
     setTimeout(() => {
       setUserData(prevData => ({
@@ -179,6 +243,10 @@ export default function Component() {
   }
 
   const handleAddPollOption = (pollIndex, newOption) => {
+    if (!newOption.trim()) {
+      toast.error('Poll option cannot be empty')
+      return
+    }
     setUserData(prevData => ({
       ...prevData,
       polls: prevData.polls.map((poll, index) => 
@@ -202,7 +270,7 @@ export default function Component() {
         <CardContent className="space-y-4 mt-4">
           {fields.map(field => (
             <div key={field} className="flex items-center justify-between py-2 border-b">
-              <div>
+              <div className="flex-1">
                 <Label htmlFor={field}>{field}</Label>
                 {editingField === field ? (
                   <Input
@@ -225,12 +293,14 @@ export default function Component() {
                   </>
                 ) : (
                   <Button onClick={() => handleEdit(field)} variant="outline">
+                    <Edit2 className="h-4 w-4 mr-2" />
                     Edit
                   </Button>
                 )}
                 <Switch
                   checked={userData[field].isVisible}
                   onCheckedChange={() => handleVisibilityToggle(field)}
+                  aria-label={`Toggle visibility of ${field}`}
                 />
               </div>
             </div>
@@ -243,7 +313,10 @@ export default function Component() {
   const renderPoll = (poll, index) => (
     <Card key={index} className="mb-6">
       <CardHeader>
-        <CardTitle>{poll.question}</CardTitle>
+        <CardTitle className="flex items-center">
+          <PieChart className="mr-2 h-5 w-5" />
+          {poll.question}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         {poll.options.map((option, optionIndex) => (
@@ -283,10 +356,9 @@ export default function Component() {
           <Button variant="ghost">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
           </Button>
-          <h1 className="text-3xl font-bold">Apeksha Rathi • 56%</h1>
-          <Button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-            Toggle {theme === 'dark' ? 'Light' : 'Dark'} Mode
-          </Button>
+          <UserProfileHeader name={userData.name} age={userData.age} hometown={userData.hometown.value} />
+          
+          <DarkModeToggle />
         </div>
 
         <Card className="mb-6">
@@ -297,6 +369,7 @@ export default function Component() {
                 variant={activeTab === 'edit' ? 'default' : 'ghost'}
                 className="rounded-none"
               >
+                <Edit2 className="mr-2 h-4 w-4" />
                 Edit
               </Button>
               <Button
@@ -304,6 +377,7 @@ export default function Component() {
                 variant={activeTab === 'view' ? 'default' : 'ghost'}
                 className="rounded-none"
               >
+                <Eye className="mr-2 h-4 w-4" />
                 View
               </Button>
             </div>
@@ -312,51 +386,19 @@ export default function Component() {
 
         {activeTab === 'edit' ? (
           <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>My photos & videos</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-3 gap-4 mb-4">
-                  {userData.photos.map((photo, index) => (
-                    <div key={index} className="relative aspect-square group">
-                      <img src={photo} alt={`User photo ${index + 1}`} className="w-full h-full object-cover rounded-md transition-transform duration-200 group-hover:scale-105" />
-                      <Button
-                        variant="destructive"
-                        size="icon"
-                        className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                        onClick={() => handleRemovePhoto(index)}
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  ))}
-                  {Array.from({ length: Math.max(0, 6 - userData.photos.length) }).map((_, index) => (
-                    <Button
-                      key={`add-${index}`}
-                      variant="outline"
-                      className="aspect-square flex items-center justify-center"
-                      onClick={handleAddPhoto}
-                      disabled={isLoading}
-                    >
-                      {isLoading ? 'Uploading...' : <Camera className="h-6 w-6" />}
-                    </Button>
-                  ))}
-                </div>
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="top-photo">Top Photo</Label>
-                  <Switch
-                    id="top-photo"
-                    checked={userData.topPhotoEnabled}
-                    onCheckedChange={handleToggleTopPhoto}
-                  />
-                </div>
-              </CardContent>
-            </Card>
+            <UserPhotos
+              photos={userData.photos}
+              onRemovePhoto={handleRemovePhoto}
+              onAddPhoto={handleAddPhoto}
+              isLoading={isLoading}
+            />
 
             <Card>
               <CardHeader>
-                <CardTitle>Written Prompts</CardTitle>
+                <CardTitle className="flex items-center">
+                  <Edit2 className="mr-2 h-5 w-5" />
+                  Written Prompts
+                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {userData.writtenPrompts.map((prompt, index) => (
@@ -393,7 +435,10 @@ export default function Component() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Voice Prompts</CardTitle>
+                <CardTitle className="flex items-center">
+                  <Mic className="mr-2 h-5 w-5" />
+                  Voice Prompts
+                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {userData.voicePrompts.map((prompt, index) => (
@@ -406,7 +451,6 @@ export default function Component() {
                   <Mic className="mr-2 h-4 w-4" />
                   Add Voice Prompt
                 </Button>
-              
               </CardContent>
             </Card>
 
@@ -416,12 +460,15 @@ export default function Component() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Polls</CardTitle>
+                <CardTitle className="flex items-center">
+                  <PieChart className="mr-2 h-5 w-5" />
+                  Polls
+                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {userData.polls.map((poll, index) => renderPoll(poll, index))}
                 <Button className="w-full">
-                  <PieChart className="mr-2 h-4 w-4" />
+                  <Plus className="mr-2 h-4 w-4" />
                   Create New Poll
                 </Button>
               </CardContent>
@@ -433,8 +480,7 @@ export default function Component() {
               <CardContent className="p-0">
                 <img src={userData.photos[0]} alt="Profile" className="w-full h-64 object-cover" />
                 <div className="p-6">
-                  <h2 className="text-2xl font-semibold mb-2">{userData.name}, {userData.age}</h2>
-                  <p className="text-muted-foreground mb-4">{userData.hometown.value}</p>
+                  <UserProfileHeader name={userData.name} age={userData.age} hometown={userData.hometown.value} />
                   <div className="space-y-4">
                     {Object.entries(userData).map(([key, value]) => {
                       if (typeof value === 'object' && 'isVisible' in value && value.isVisible) {
