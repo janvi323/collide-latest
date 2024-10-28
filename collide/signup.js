@@ -138,6 +138,10 @@ function initializeForm() {
     updateButtons();
 }
 
+function redirectToHome() {
+    window.location.href = "../proj_collide💛/welcome.html";
+}
+
 // Initialize the form when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     initializeForm();

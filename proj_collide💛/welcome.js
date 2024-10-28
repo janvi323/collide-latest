@@ -1,6 +1,6 @@
 function redirectToMatch() {
     // Redirect to match.html
-    window.location.href = "../match making/match.html";
+    window.location.href = "../collide/questions.html";
 }
 function redirectToVideo() {
     // Redirect to match.html
