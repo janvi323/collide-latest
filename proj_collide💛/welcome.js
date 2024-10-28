@@ -7,6 +7,15 @@ function redirectToVideo() {
     window.location.href = "../video call/video.html";
 }
 
+function redirectToFAQ() {
+    // Redirect to faq.html
+    window.location.href = "../collide/faq assets/faq.html";
+}
+
+function redirectToSignUp() {
+    window.location.href = "../collide/signup.html";
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Initial loading animation
     const loadingScreen = document.getElementById('loading-screen');
