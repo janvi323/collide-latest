@@ -18,7 +18,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function Component() {
   const [userData, setUserData] = useState({
-    name: 'Apeksha Rathi',
+    name: 'Ananya Pandey',
     age: 28,
     hometown: { value: 'Chandigarh', isVisible: true },
     politics: { value: 'Liberal', isVisible: true },
@@ -40,9 +40,11 @@ export default function Component() {
     education: { value: "Bachelor's Degree", isVisible: true },
     currentResidence: { value: 'Apartment', isVisible: true },
     photos: [
-      '/placeholder.svg?height=300&width=300',
-      '/placeholder.svg?height=300&width=300',
-      '/placeholder.svg?height=300&width=300',
+      
+      'https://i.pinimg.com/474x/6c/39/a5/6c39a575b97cf188b363bf1b4573197f.jpg',
+      'https://i.pinimg.com/736x/20/1a/29/201a299627e2226088cd4c534c3d1a4f.jpg',
+      'https://i.pinimg.com/474x/7f/77/c3/7f77c3efa02d2d4ed9170ed64a8b594d.jpg',
+     'https://i.pinimg.com/736x/7e/06/30/7e06308b72fe96911d4263347985f92c.jpg',
     ],
     topPhotoEnabled: true,
     writtenPrompts: [

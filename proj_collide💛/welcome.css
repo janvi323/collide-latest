@@ -403,18 +403,22 @@ h2 {
 
 
 
-
 footer {
+    display: flex;
+    flex-direction: row;
     background-color: black;
     color: white;
     padding: 2rem;
-    display: flex;
+}
+footer > div {
+    flex: 1; /* Make child divs flexible */
+    padding: 1rem; /* Optional: Add padding for visual clarity */
 }
 
 footer.content {
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
+    gap: 2rem; */
 }
 
 footer h3, footer h4 {
