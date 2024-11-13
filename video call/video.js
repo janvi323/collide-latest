@@ -49,7 +49,7 @@ window.onload = function () {
             if (backHomeButton) {
                 backHomeButton.addEventListener('click', function () {
                     console.log("Back-home button clicked.");
-                    window.location.href = '/code/welcome.html';
+                    window.location.href = '../proj_collide💛/welcome.html';
                 });
             } else {
                 console.error("Back-home button not found!");
